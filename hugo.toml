@@ -3,7 +3,7 @@ languageCode = 'en-us'
 title = "GameLibrary"
 theme = "database"  
 disableKinds = ['rss']
-[params]
+[params] 
     description = "Games Library"
     author = "Yuusha"
     [security]

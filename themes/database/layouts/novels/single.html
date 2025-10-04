@@ -1,0 +1,12 @@
+<h1>{{ .Title }}</h1>
+<p>Author: {{ .Params.author }}</p>
+<p>Status: {{ .Params.status }}</p>
+<img src="{{ .Params.cover }}" alt="Cover">
+<p>{{ .Params.description }}</p>
+
+<h3>Genres:</h3>
+<ul>
+  {{ range .Params.genres }}
+    <li>{{ . }}</li>
+  {{ end }}
+</ul>

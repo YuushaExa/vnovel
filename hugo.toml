@@ -25,6 +25,7 @@ allowActionJSTmpl = true
     developers = "developers"
     genres = "genres"
     studios = "studios"
+    author = "authors"
 [outputs]
     page = [ 'html' ]
     taxonomy = [ "HTML" ]

@@ -3,13 +3,14 @@
   <div class="page-list">
     {{ range .Paginator.Pages }}
       <article class="page-card">
-          <div class="card-image">
-  {{ with .Params.cover }}
-            <img src="{{ . }}" alt="Cover for {{ .LinkTitle }}" class="novel-cover" loading="lazy">
-          {{ end }}          </div>
+        <div class="card-image">
+          {{ with .Params.cover }}
+            <img src="{{ . }}" alt="Cover for {{ $.LinkTitle }}" class="novel-cover" loading="lazy">
+          {{ end }}
+        </div>
         <h2 class="novel-title">
-              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-            </h2>
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </h2>
       </article>
     {{ end }}
   </div>

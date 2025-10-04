@@ -18,11 +18,18 @@
   {{ $num := add $index 1 }}
   {{ $title := $novel.title | default "Untitled" }}
 
+  {{ $authors := $novel.author }}
+  {{ if not $authors }}
+    {{ $authors = slice }}
+  {{ else if not (reflect.IsSlice $authors) }}
+    {{ $authors = slice $authors }}
+  {{ end }}
+
   {{ $params := dict
     "title" $title
     "cover" ($novel.cover | default "")
-"authors" (slice ($novel.author | default "Unknown"))
-"genres" ($novel.genres | default slice)
+    "authors" $authors
+    "genres" ($novel.genres | default slice)
     "status" ($novel.status | default "")
     "description" ($novel.description | default "")
   }}
@@ -33,7 +40,7 @@
     "content" (dict "mediaType" "text/markdown" "value" $content)
     "kind" "page"
     "params" $params
-    "path" (printf "%d" $num)
+    "path" (printf "novel-%d" $num)
     "title" $title
   }}
 

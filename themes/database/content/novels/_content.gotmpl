@@ -1,0 +1,35 @@
+{{ $data := slice }}
+{{ $urls := slice 
+  "https://curly-pond-9050.yuush.workers.dev/titles.json"
+}}
+
+{{ range $url := $urls }}
+  {{ with try (resources.GetRemote $url) }}
+    {{ with .Err }}
+      {{ errorf "Unable to get remote resource %s: %s" $url . }}
+    {{ else with .Value }}
+      {{ $jsonData := . | transform.Unmarshal }}
+      {{ $data = $data | append $jsonData }}
+    {{ else }}
+      {{ errorf "Unable to get remote resource %s" $url }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ range $data }}
+
+  {{ $content := dict "mediaType" "text/markdown" "value" .titles  }}
+  {{ $id := .id | default "Untitled" }}
+
+
+  {{ $params := dict "titles" .titles }}
+
+  {{ $page := dict
+    "content" $content
+    "kind" "page"
+    "params" $params
+    "path" .titles
+    "title" $titles
+  }}
+  {{ $.AddPage $page }}
+{{ end }}

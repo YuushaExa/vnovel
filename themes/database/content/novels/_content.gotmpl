@@ -18,18 +18,18 @@
 
 {{ range $data }}
 
-  {{ $content := dict "mediaType" "text/markdown" "value" .titles  }}
+  {{ $content := dict "mediaType" "text/markdown" "value" .title  }}
   {{ $id := .id | default "Untitled" }}
 
 
-  {{ $params := dict "titles" .titles }}
+  {{ $params := dict "title" .title }}
 
   {{ $page := dict
     "content" $content
     "kind" "page"
     "params" $params
-    "path" .titles
-    "title" $titles
+    "path" .title
+    "title" $title
   }}
   {{ $.AddPage $page }}
 {{ end }}

@@ -21,7 +21,7 @@
   {{ $params := dict
     "title" $title
     "cover" ($novel.cover | default "")
-    "author" ($novel.author | default "")
+    "author" ($novel.author | default slice)
     "genres" ($novel.genres | default slice)
     "status" ($novel.status | default "")
     "description" ($novel.description | default "")

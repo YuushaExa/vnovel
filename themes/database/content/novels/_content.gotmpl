@@ -1,7 +1,5 @@
 {{ $data := slice }}
-{{ $urls := slice 
-  "https://curly-pond-9050.yuush.workers.dev/titles.json"
-}}
+{{ $urls := slice "https://curly-pond-9050.yuush.workers.dev/titles.json" }}
 
 {{ range $url := $urls }}
   {{ with try (resources.GetRemote $url) }}
@@ -16,20 +14,19 @@
   {{ end }}
 {{ end }}
 
-{{ range $data }}
+{{ range $index, $item := $data }}
+  {{ $num := add $index 1 }}  <!-- 1-based index -->
+  {{ $title := $item.title }}
 
-  {{ $content := dict "mediaType" "text/markdown" "value" .title  }}
-  {{ $id := .id | default "Untitled" }}
-
-
-  {{ $params := dict "title" .title }}
+  {{ $content := dict "mediaType" "text/markdown" "value" $title }}
+  {{ $params := dict "title" $title }}
 
   {{ $page := dict
     "content" $content
     "kind" "page"
     "params" $params
-    "path" .title
-    "title" .title
+    "path" (printf "%d" $num)  <!-- e.g., "1", "2", "3" -->
+    "title" $title
   }}
   {{ $.AddPage $page }}
 {{ end }}

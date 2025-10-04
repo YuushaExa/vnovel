@@ -15,7 +15,7 @@
 {{ end }}
 
 {{ range $index, $item := $data }}
-  {{ $num := add $index 1 }}  <!-- 1-based index -->
+  {{ $num := add $index 1 }}  
   {{ $title := $item.title }}
 
   {{ $content := dict "mediaType" "text/markdown" "value" $title }}
@@ -25,7 +25,7 @@
     "content" $content
     "kind" "page"
     "params" $params
-    "path" (printf "%d" $num)  <!-- e.g., "1", "2", "3" -->
+    "path" (printf "%d" $num) 
     "title" $title
   }}
   {{ $.AddPage $page }}

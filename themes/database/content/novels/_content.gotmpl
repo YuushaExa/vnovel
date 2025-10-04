@@ -1,5 +1,5 @@
 {{ $data := slice }}
-{{ $urls := slice "https://curly-pond-9050.yuush.workers.dev/all.json" }}
+{{ $urls := slice "https://curly-pond-9050.workit1990k.workers.dev/all.json" }}
 
 {{ range $url := $urls }}
   {{ with try (resources.GetRemote $url) }}
